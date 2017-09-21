@@ -59,6 +59,7 @@
 -(UINavigationController*) rootNavigation{
     UINavigationController *ctrl = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     if (![ctrl isKindOfClass:[UINavigationController class]]) {
+        [[[UIApplication sharedApplication] keyWindow] setRootViewController:nil];
         ctrl = [[UINavigationController alloc] initWithRootViewController:ctrl ? ctrl : [UIViewController new]];
         [[[UIApplication sharedApplication] keyWindow] setRootViewController:ctrl];
     }
