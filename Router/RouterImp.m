@@ -62,7 +62,7 @@
         NSString * pattern = [router objectForKey:@"pattern"];
         if ([path containsString:pattern]) {
             RouterComponent * component = [router objectForKey:@"component"];
-            return [component component:pattern parameters:@{}];
+            return [component component:path parameters:parameters];
         }
     }
     return nil;
