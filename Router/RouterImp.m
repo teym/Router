@@ -21,6 +21,7 @@
     if (self) {
         self.parent = parent;
         self.subRouters = @[];
+        self.patterns = @[];
     }
     return self;
 }
@@ -35,6 +36,7 @@
 }
 
 -(id<Router>) addSubRouter:(NSString*) pattern{
+    NSLog(@"add sub router[%@]",pattern);
     RouterImp * sub = [[RouterImp alloc] initWithParent:self];
     RouterComponent * component = [[BlockRouterComponent alloc] initWithBlock:^UIViewController *(NSString * path, NSDictionary * parameters) {
         return [sub component:path parameters:parameters];
@@ -47,6 +49,7 @@
     return sub;
 }
 -(void) addRouter:(NSString*) pattern competent:(UIViewController*(^)(NSString*,NSDictionary*)) block{
+    NSLog(@"add router[%@]",pattern);
     RouterComponent * competent = [[BlockRouterComponent alloc] initWithBlock:block];
     self.patterns = [self.patterns arrayByAddingObject:@{@"pattern":pattern,
                                                          @"component":competent
