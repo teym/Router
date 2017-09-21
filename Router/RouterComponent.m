@@ -6,19 +6,19 @@
 //  Copyright © 2017年 mike. All rights reserved.
 //
 
-#import "RouterCompetent.h"
+#import "RouterComponent.h"
 
-@implementation RouterCompetent
--(UIViewController*) competent:(NSString*) path parameters:(NSDictionary*) parameters{
+@implementation RouterComponent
+-(UIViewController*) component:(NSString*) path parameters:(NSDictionary*) parameters{
     return nil;
 }
 @end
 
-@interface BlockRouterCompetent ()
+@interface BlockRouterComponent ()
 @property (nonatomic,copy) UIViewController*(^block)(NSString*,NSDictionary*);
 @end
 
-@implementation BlockRouterCompetent
+@implementation BlockRouterComponent
 -(id) initWithBlock:(UIViewController* (^)(NSString *, NSDictionary *))block{
     self = [super init];
     if (self) {
@@ -26,7 +26,7 @@
     }
     return self;
 }
--(UIViewController*) comptent:(NSString *)path parameters:(NSDictionary *)parameters{
+-(UIViewController*) component:(NSString *)path parameters:(NSDictionary *)parameters{
     return self.block(path,parameters);
 }
 @end

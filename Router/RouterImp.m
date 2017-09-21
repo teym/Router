@@ -7,7 +7,7 @@
 //
 
 #import "RouterImp.h"
-#import "RouterCompetent.h"
+#import "RouterComponent.h"
 
 @interface RouterImp ()
 @property (nonatomic,weak) id<Router> parent;
@@ -36,23 +36,32 @@
 
 -(id<Router>) addSubRouter:(NSString*) pattern{
     RouterImp * sub = [[RouterImp alloc] initWithParent:self];
-    RouterCompetent * competent = [[BlockRouterCompetent alloc] initWithBlock:^UIViewController *(NSString * path, NSDictionary * parameters) {
-        return [sub competent:path parameters:parameters];
+    RouterComponent * component = [[BlockRouterComponent alloc] initWithBlock:^UIViewController *(NSString * path, NSDictionary * parameters) {
+        return [sub component:path parameters:parameters];
     }];
     self.subRouters = [self.subRouters arrayByAddingObject:sub];
     self.patterns = [self.patterns arrayByAddingObject:@{@"pattern":pattern,
-                                                         @"competent":competent,
+                                                         @"component":component,
                                                          @"router":sub
                                                          }];
     return sub;
 }
 -(void) addRouter:(NSString*) pattern competent:(UIViewController*(^)(NSString*,NSDictionary*)) block{
-    RouterCompetent * competent = [[BlockRouterCompetent alloc] initWithBlock:block];
+    RouterComponent * competent = [[BlockRouterComponent alloc] initWithBlock:block];
     self.patterns = [self.patterns arrayByAddingObject:@{@"pattern":pattern,
-                                                         @"competent":competent
+                                                         @"component":competent
                                                          }];
 }
--(UIViewController*) competent:(NSString *)path parameters:(NSDictionary *)parameters{
+-(UIViewController*) component:(NSString *)path parameters:(NSDictionary *)parameters{
+    //sample match
+    NSArray * patterns = self.patterns;
+    for (NSDictionary * router in patterns) {
+        NSString * pattern = [router objectForKey:@"pattern"];
+        if ([path containsString:pattern]) {
+            RouterComponent * component = [router objectForKey:@"component"];
+            return [component component:pattern parameters:@{}];
+        }
+    }
     return nil;
 }
 @end

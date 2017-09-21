@@ -1,16 +1,16 @@
-//
-//  Router.m
-//  Router
-//
-//  Created by mike on 2017/9/20.
-//  Copyright © 2017年 mike. All rights reserved.
-//
+    //
+    //  Router.m
+    //  Router
+    //
+    //  Created by mike on 2017/9/20.
+    //  Copyright © 2017年 mike. All rights reserved.
+    //
 
 #import "Router.h"
 #import "RouterImp.h"
 #import <Module/Module.h>
 
-@interface Router <Module, Router>
+@interface Router:NSObject <Module, Router>
 @property(nonatomic,weak) id<ModuleInjection> injection;
 @property(nonatomic,strong) RouterImp* root;
 @end
@@ -29,13 +29,13 @@
     return self;
 }
 -(void) push:(NSString*) uri{
-    UIViewController * controller = [self.root competent:uri parameters:@{}];
+    UIViewController * controller = [self.root component:uri parameters:@{}];
     if (controller) {
         [[self rootNavigation] pushViewController:controller animated:YES];
     }
 }
 -(void) replace:(NSString*) uri{
-    UIViewController * controller = [self.root competent:uri parameters:@{}];
+    UIViewController * controller = [self.root component:uri parameters:@{}];
     if (controller) {
         NSMutableArray * controllers = [[[self rootNavigation] viewControllers] mutableCopy];
         [controllers removeLastObject];
@@ -54,7 +54,12 @@
     return [self.root addRouter:pattern competent:block];
 }
 -(UINavigationController*) rootNavigation{
-    return nil;
+    UINavigationController *ctrl = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    if (![ctrl isKindOfClass:[UINavigationController class]]) {
+        ctrl = [[UINavigationController alloc] initWithRootViewController:ctrl ? ctrl : [UIViewController new]];
+        [[[UIApplication sharedApplication] keyWindow] setRootViewController:ctrl];
+    }
+    return ctrl;
 }
 @end
 

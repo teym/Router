@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Router.h"
-#import "RouterCompetent.h"
+#import "RouterComponent.h"
 
-@interface RouterImp : NSObject <Router, Competent>
+@interface RouterImp : NSObject <Router, Component>
 -(id) initWithParent:(id<Router>) parent;
 @end

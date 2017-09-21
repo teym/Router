@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol Competent <NSObject>
--(UIViewController*) competent:(NSString*) path parameters:(NSDictionary*) parameters;
+@protocol Component <NSObject>
+-(UIViewController*) component:(NSString*) path parameters:(NSDictionary*) parameters;
 @end
 
-@interface RouterCompetent : NSObject <Competent>
+@interface RouterComponent : NSObject <Component>
 @end
 
-@interface BlockRouterCompetent : RouterCompetent
+@interface BlockRouterComponent : RouterComponent
 -(id) initWithBlock:(UIViewController*(^)(NSString*,NSDictionary*)) block;
 @end
