@@ -19,6 +19,9 @@
 +(NSArray*) Interfaces{
     return @[@protocol(Router)];
 }
++(BOOL) loadWhenStart{
+    return NO;
+}
 
 -(id) initWithInjection:(id) injection{
     self = [super init];
