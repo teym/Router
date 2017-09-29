@@ -1,0 +1,393 @@
+//
+//  RegexpPath.swift
+//  Router
+//
+//  Created by 王航 on 2017/9/29.
+//  Copyright © 2017年 mike. All rights reserved.
+//
+
+import Foundation
+
+class Regexp {
+    private let regexp:NSRegularExpression
+    init(pattern:String) {
+        self.regexp = try! NSRegularExpression(pattern:pattern,
+                                               options:NSRegularExpression.Options(rawValue: 0))
+    }
+    
+    func match(string:String) -> () -> ([String?],Int)? {
+        let nsstring = string as NSString
+        var index = 0
+        let exec = { () -> ([String?],Int)? in
+            if let rets = self.regexp.firstMatch(in: string,
+                                                options: .reportCompletion,
+                                                range: NSRange(location: index, length: nsstring.length)) {
+                let subs = (0 ..< rets.numberOfRanges).map({rets.range(at: $0)}).map({ (r) -> String? in
+                    r.location == NSNotFound ? nil : nsstring.substring(with: r)
+                })
+                let sIndex = rets.range.location
+                index = sIndex + rets.range.length
+                return (subs,index)
+            }
+            return nil
+        }
+        return exec
+    }
+}
+
+let REGEXP_STR = [
+    // Match escaped characters that would otherwise appear in future matches.
+    // This allows the user to escape special characters that won't transform.
+    "(\\\\.)",
+    // Match Express-style parameters and un-named parameters with a prefix
+    // and optional suffixes. Matches appear as:
+    //
+    // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?"]
+    // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined]
+    "(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?"
+    ].joined(separator: "|") //"g"
+
+let url = "/user/:id/doc/:di"
+
+let PATH_REGEXP = Regexp(pattern: REGEXP_STR)
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+func parse(str:String, options:[String:String]) {
+      var tokens = [String]()
+      var key = 0
+      var index = 0
+      var path = ""
+      let defaultDelimiter = options["delimiter"] ?? "/"
+      let delimiters = options["delimiters"] ?? "./"
+      var pathEscaped = false
+
+    let exec = PATH_REGEXP.match(string: str)
+      while let res = exec() {
+        let m = res.0[0]
+        let escaped = res.0[1]
+        let offset = res.1
+        path += (str as NSString).substring(with: NSMakeRange(index,offset))
+        index = offset + ((m ?? "") as NSString).length
+    
+        // Ignore already escaped sequences.
+        if let esc = escaped {
+            path.append(String(esc.dropFirst()))
+            pathEscaped = true
+            continue
+        }
+    
+        var prev = ""
+        var next = (str as NSString).substring(with: NSMakeRange(index, 1))
+        var name = res.0[2]
+        var capture = res.0[3]
+        var group = res.0[4]
+        var modifier = res.0[5]
+    
+        if (!pathEscaped && path.count > 0) {
+          var k = path.count - 1
+           let ch = path.characters.last!
+          if (delimiters.index(of: ch) != nil) {
+            prev = (path as NSString).substring(with: NSMakeRange(k, 1))
+            path = (path as NSString).substring(with: NSMakeRange(0, k))
+          }
+        }
+    
+        // Push the current path onto the tokens.
+        if (path.count > 0) {
+          tokens.append(path)
+          path = ""
+          pathEscaped = false
+        }
+    
+//        var partial = prev !== '' && next !== undefined && next !== prev
+    //    var repeat = modifier === '+' || modifier === '*'
+    //    var optional = modifier === '?' || modifier === '*'
+    //    var delimiter = prev || defaultDelimiter
+    //    var pattern = capture || group
+    //
+    //    tokens.push({
+    //      name: name || key++,
+    //      prefix: prev,
+    //      delimiter: delimiter,
+    //      optional: optional,
+    //      repeat: repeat,
+    //      partial: partial,
+    //      pattern: pattern ? escapeGroup(pattern) : '[^' + escapeString(delimiter) + ']+?'
+    //    })
+      }
+    //
+    //  // Push any remaining characters.
+    //  if (path || index < str.length) {
+    //    tokens.push(path + str.substr(index))
+    //  }
+    //
+    //  return tokens
+}
+//
+///**
+// * Compile a string to a template function for the path.
+// *
+// * @param  {string}             str
+// * @param  {Object=}            options
+// * @return {!function(Object=, Object=)}
+// */
+//function compile (str, options) {
+//  return tokensToFunction(parse(str, options))
+//}
+//
+///**
+// * Expose a method for transforming tokens into the path function.
+// */
+//function tokensToFunction (tokens) {
+//  // Compile all the tokens into regexps.
+//  var matches = new Array(tokens.length)
+//
+//  // Compile all the patterns before compilation.
+//  for (var i = 0; i < tokens.length; i++) {
+//    if (typeof tokens[i] === 'object') {
+//      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+//    }
+//  }
+//
+//  return function (data, options) {
+//    var path = ''
+//    var encode = (options && options.encode) || encodeURIComponent
+//
+//    for (var i = 0; i < tokens.length; i++) {
+//      var token = tokens[i]
+//
+//      if (typeof token === 'string') {
+//        path += token
+//        continue
+//      }
+//
+//      var value = data ? data[token.name] : undefined
+//      var segment
+//
+//      if (Array.isArray(value)) {
+//        if (!token.repeat) {
+//          throw new TypeError('Expected "' + token.name + '" to not repeat, but got array')
+//        }
+//
+//        if (value.length === 0) {
+//          if (token.optional) continue
+//
+//          throw new TypeError('Expected "' + token.name + '" to not be empty')
+//        }
+//
+//        for (var j = 0; j < value.length; j++) {
+//          segment = encode(value[j])
+//
+//          if (!matches[i].test(segment)) {
+//            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '"')
+//          }
+//
+//          path += (j === 0 ? token.prefix : token.delimiter) + segment
+//        }
+//
+//        continue
+//      }
+//
+//      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+//        segment = encode(String(value))
+//
+//        if (!matches[i].test(segment)) {
+//          throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but got "' + segment + '"')
+//        }
+//
+//        path += token.prefix + segment
+//        continue
+//      }
+//
+//      if (token.optional) {
+//        // Prepend partial segment prefixes.
+//        if (token.partial) path += token.prefix
+//
+//        continue
+//      }
+//
+//      throw new TypeError('Expected "' + token.name + '" to be ' + (token.repeat ? 'an array' : 'a string'))
+//    }
+//
+//    return path
+//  }
+//}
+//
+///**
+// * Escape a regular expression string.
+// *
+// * @param  {string} str
+// * @return {string}
+// */
+//function escapeString (str) {
+//  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, '\\$1')
+//}
+//
+///**
+// * Escape the capturing group by escaping special characters and meaning.
+// *
+// * @param  {string} group
+// * @return {string}
+// */
+//function escapeGroup (group) {
+//  return group.replace(/([=!:$/()])/g, '\\$1')
+//}
+//
+///**
+// * Get the flags for a regexp from the options.
+// *
+// * @param  {Object} options
+// * @return {string}
+// */
+//function flags (options) {
+//  return options && options.sensitive ? '' : 'i'
+//}
+//
+///**
+// * Pull out keys from a regexp.
+// *
+// * @param  {!RegExp} path
+// * @param  {Array=}  keys
+// * @return {!RegExp}
+// */
+//function regexpToRegexp (path, keys) {
+//  if (!keys) return path
+//
+//  // Use a negative lookahead to match only capturing groups.
+//  var groups = path.source.match(/\((?!\?)/g)
+//
+//  if (groups) {
+//    for (var i = 0; i < groups.length; i++) {
+//      keys.push({
+//        name: i,
+//        prefix: null,
+//        delimiter: null,
+//        optional: false,
+//        repeat: false,
+//        partial: false,
+//        pattern: null
+//      })
+//    }
+//  }
+//
+//  return path
+//}
+//
+///**
+// * Transform an array into a regexp.
+// *
+// * @param  {!Array}  path
+// * @param  {Array=}  keys
+// * @param  {Object=} options
+// * @return {!RegExp}
+// */
+//function arrayToRegexp (path, keys, options) {
+//  var parts = []
+//
+//  for (var i = 0; i < path.length; i++) {
+//    parts.push(pathToRegexp(path[i], keys, options).source)
+//  }
+//
+//  return new RegExp('(?:' + parts.join('|') + ')', flags(options))
+//}
+//
+///**
+// * Create a path regexp from string input.
+// *
+// * @param  {string}  path
+// * @param  {Array=}  keys
+// * @param  {Object=} options
+// * @return {!RegExp}
+// */
+//function stringToRegexp (path, keys, options) {
+//  return tokensToRegExp(parse(path, options), keys, options)
+//}
+//
+///**
+// * Expose a function for taking tokens and returning a RegExp.
+// *
+// * @param  {!Array}  tokens
+// * @param  {Array=}  keys
+// * @param  {Object=} options
+// * @return {!RegExp}
+// */
+//function tokensToRegExp (tokens, keys, options) {
+//  options = options || {}
+//
+//  var strict = options.strict
+//  var end = options.end !== false
+//  var delimiter = escapeString(options.delimiter || '/')
+//  var endsWith = [].concat(options.endsWith || []).map(escapeString).concat('$').join('|')
+//  var route = ''
+//
+//  // Iterate over the tokens and create our regexp string.
+//  for (var i = 0; i < tokens.length; i++) {
+//    var token = tokens[i]
+//
+//    if (typeof token === 'string') {
+//      route += escapeString(token)
+//    } else {
+//      var prefix = escapeString(token.prefix)
+//      var capture = '(?:' + token.pattern + ')'
+//
+//      if (keys) keys.push(token)
+//
+//      if (token.repeat) {
+//        capture += '(?:' + prefix + capture + ')*'
+//      }
+//
+//      if (token.optional) {
+//        if (!token.partial) {
+//          capture = '(?:' + prefix + '(' + capture + '))?'
+//        } else {
+//          capture = prefix + '(' + capture + ')?'
+//        }
+//      } else {
+//        capture = prefix + '(' + capture + ')'
+//      }
+//
+//      route += capture
+//    }
+//  }
+//
+//  if (end) {
+//    if (!strict) route += '(?:' + delimiter + ')?'
+//
+//    route += endsWith === '$' ? '$' : '(?=' + endsWith + ')'
+//  } else {
+//    if (!strict) route += '(?:' + delimiter + '(?=' + endsWith + '))?'
+//
+//    route += '(?=' + delimiter + '|' + endsWith + ')'
+//  }
+//
+//  return new RegExp('^' + route, flags(options))
+//}
+//
+///**
+// * Normalize the given path string, returning a regular expression.
+// *
+// * An empty array can be passed in for the keys, which will hold the
+// * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+// * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+// *
+// * @param  {(string|RegExp|Array)} path
+// * @param  {Array=}                keys
+// * @param  {Object=}               options
+// * @return {!RegExp}
+// */
+//function pathToRegexp (path, keys, options) {
+//  if (path instanceof RegExp) {
+//    return regexpToRegexp(path, keys)
+//  }
+//
+//  if (Array.isArray(path)) {
+//    return arrayToRegexp(/** @type {!Array} */ (path), keys, options)
+//  }
+//
+//  return stringToRegexp(/** @type {string} */ (path), keys, options)
+//}

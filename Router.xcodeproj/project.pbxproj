@@ -3,140 +3,117 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C863DB481F727A05002CD75B /* Router.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C863DB3E1F727A05002CD75B /* Router.framework */; };
-		C863DB4D1F727A05002CD75B /* RouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C863DB4C1F727A05002CD75B /* RouterTests.m */; };
-		C863DB4F1F727A05002CD75B /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = C863DB411F727A05002CD75B /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C863DC3B1F727C98002CD75B /* Router.m in Sources */ = {isa = PBXBuildFile; fileRef = C863DC391F727C98002CD75B /* Router.m */; };
-		C863DC3E1F728A47002CD75B /* RouterImp.h in Headers */ = {isa = PBXBuildFile; fileRef = C863DC3C1F728A47002CD75B /* RouterImp.h */; };
-		C863DC3F1F728A47002CD75B /* RouterImp.m in Sources */ = {isa = PBXBuildFile; fileRef = C863DC3D1F728A47002CD75B /* RouterImp.m */; };
-		C863DC421F728B0C002CD75B /* RouterComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = C863DC401F728B0C002CD75B /* RouterComponent.h */; };
-		C863DC431F728B0C002CD75B /* RouterComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C863DC411F728B0C002CD75B /* RouterComponent.m */; };
-		C8D881D91F73957900250939 /* Module.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D881D81F73957900250939 /* Module.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		270410981F7E366B0095A7A7 /* Router.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2704108E1F7E366A0095A7A7 /* Router.framework */; };
+		2704109D1F7E366B0095A7A7 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2704109C1F7E366B0095A7A7 /* RouterTests.swift */; };
+		2704109F1F7E366B0095A7A7 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 270410911F7E366B0095A7A7 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270410A91F7E36830095A7A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410A81F7E36830095A7A7 /* Router.swift */; };
+		270410AB1F7E36AD0095A7A7 /* RegexpPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C863DB491F727A05002CD75B /* PBXContainerItemProxy */ = {
+		270410991F7E366B0095A7A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C863DB351F727A05002CD75B /* Project object */;
+			containerPortal = 270410851F7E366A0095A7A7 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C863DB3D1F727A05002CD75B;
+			remoteGlobalIDString = 2704108D1F7E366A0095A7A7;
 			remoteInfo = Router;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C863DB3E1F727A05002CD75B /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C863DB411F727A05002CD75B /* Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
-		C863DB421F727A05002CD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C863DB471F727A05002CD75B /* RouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C863DB4C1F727A05002CD75B /* RouterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouterTests.m; sourceTree = "<group>"; };
-		C863DB4E1F727A05002CD75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C863DC391F727C98002CD75B /* Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Router.m; sourceTree = "<group>"; };
-		C863DC3C1F728A47002CD75B /* RouterImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterImp.h; sourceTree = "<group>"; };
-		C863DC3D1F728A47002CD75B /* RouterImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterImp.m; sourceTree = "<group>"; };
-		C863DC401F728B0C002CD75B /* RouterComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterComponent.h; sourceTree = "<group>"; };
-		C863DC411F728B0C002CD75B /* RouterComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterComponent.m; sourceTree = "<group>"; };
-		C8D881D81F73957900250939 /* Module.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Module.framework; path = Carthage/Build/iOS/Module.framework; sourceTree = "<group>"; };
+		2704108E1F7E366A0095A7A7 /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		270410911F7E366B0095A7A7 /* Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
+		270410921F7E366B0095A7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		270410971F7E366B0095A7A7 /* RouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2704109C1F7E366B0095A7A7 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
+		2704109E1F7E366B0095A7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		270410A81F7E36830095A7A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexpPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C863DB3A1F727A05002CD75B /* Frameworks */ = {
+		2704108A1F7E366A0095A7A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8D881D91F73957900250939 /* Module.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C863DB441F727A05002CD75B /* Frameworks */ = {
+		270410941F7E366B0095A7A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C863DB481F727A05002CD75B /* Router.framework in Frameworks */,
+				270410981F7E366B0095A7A7 /* Router.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C863DB341F727A05002CD75B = {
+		270410841F7E366A0095A7A7 = {
 			isa = PBXGroup;
 			children = (
-				C863DB401F727A05002CD75B /* Router */,
-				C863DB4B1F727A05002CD75B /* RouterTests */,
-				C863DB3F1F727A05002CD75B /* Products */,
-				C8D881D71F73957900250939 /* Frameworks */,
+				270410901F7E366A0095A7A7 /* Router */,
+				2704109B1F7E366B0095A7A7 /* RouterTests */,
+				2704108F1F7E366A0095A7A7 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C863DB3F1F727A05002CD75B /* Products */ = {
+		2704108F1F7E366A0095A7A7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C863DB3E1F727A05002CD75B /* Router.framework */,
-				C863DB471F727A05002CD75B /* RouterTests.xctest */,
+				2704108E1F7E366A0095A7A7 /* Router.framework */,
+				270410971F7E366B0095A7A7 /* RouterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C863DB401F727A05002CD75B /* Router */ = {
+		270410901F7E366A0095A7A7 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				C863DB411F727A05002CD75B /* Router.h */,
-				C863DB421F727A05002CD75B /* Info.plist */,
-				C863DC391F727C98002CD75B /* Router.m */,
-				C863DC3C1F728A47002CD75B /* RouterImp.h */,
-				C863DC3D1F728A47002CD75B /* RouterImp.m */,
-				C863DC401F728B0C002CD75B /* RouterComponent.h */,
-				C863DC411F728B0C002CD75B /* RouterComponent.m */,
+				270410911F7E366B0095A7A7 /* Router.h */,
+				270410921F7E366B0095A7A7 /* Info.plist */,
+				270410A81F7E36830095A7A7 /* Router.swift */,
+				270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
 		};
-		C863DB4B1F727A05002CD75B /* RouterTests */ = {
+		2704109B1F7E366B0095A7A7 /* RouterTests */ = {
 			isa = PBXGroup;
 			children = (
-				C863DB4C1F727A05002CD75B /* RouterTests.m */,
-				C863DB4E1F727A05002CD75B /* Info.plist */,
+				2704109C1F7E366B0095A7A7 /* RouterTests.swift */,
+				2704109E1F7E366B0095A7A7 /* Info.plist */,
 			);
 			path = RouterTests;
-			sourceTree = "<group>";
-		};
-		C8D881D71F73957900250939 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C8D881D81F73957900250939 /* Module.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C863DB3B1F727A05002CD75B /* Headers */ = {
+		2704108B1F7E366A0095A7A7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C863DC3E1F728A47002CD75B /* RouterImp.h in Headers */,
-				C863DB4F1F727A05002CD75B /* Router.h in Headers */,
-				C863DC421F728B0C002CD75B /* RouterComponent.h in Headers */,
+				2704109F1F7E366B0095A7A7 /* Router.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C863DB3D1F727A05002CD75B /* Router */ = {
+		2704108D1F7E366A0095A7A7 /* Router */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C863DB521F727A05002CD75B /* Build configuration list for PBXNativeTarget "Router" */;
+			buildConfigurationList = 270410A21F7E366B0095A7A7 /* Build configuration list for PBXNativeTarget "Router" */;
 			buildPhases = (
-				C863DB391F727A05002CD75B /* Sources */,
-				C863DB3A1F727A05002CD75B /* Frameworks */,
-				C863DB3B1F727A05002CD75B /* Headers */,
-				C863DB3C1F727A05002CD75B /* Resources */,
+				270410891F7E366A0095A7A7 /* Sources */,
+				2704108A1F7E366A0095A7A7 /* Frameworks */,
+				2704108B1F7E366A0095A7A7 /* Headers */,
+				2704108C1F7E366A0095A7A7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -144,75 +121,75 @@
 			);
 			name = Router;
 			productName = Router;
-			productReference = C863DB3E1F727A05002CD75B /* Router.framework */;
+			productReference = 2704108E1F7E366A0095A7A7 /* Router.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C863DB461F727A05002CD75B /* RouterTests */ = {
+		270410961F7E366B0095A7A7 /* RouterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C863DB551F727A05002CD75B /* Build configuration list for PBXNativeTarget "RouterTests" */;
+			buildConfigurationList = 270410A51F7E366B0095A7A7 /* Build configuration list for PBXNativeTarget "RouterTests" */;
 			buildPhases = (
-				C863DB431F727A05002CD75B /* Sources */,
-				C863DB441F727A05002CD75B /* Frameworks */,
-				C863DB451F727A05002CD75B /* Resources */,
+				270410931F7E366B0095A7A7 /* Sources */,
+				270410941F7E366B0095A7A7 /* Frameworks */,
+				270410951F7E366B0095A7A7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C863DB4A1F727A05002CD75B /* PBXTargetDependency */,
+				2704109A1F7E366B0095A7A7 /* PBXTargetDependency */,
 			);
 			name = RouterTests;
 			productName = RouterTests;
-			productReference = C863DB471F727A05002CD75B /* RouterTests.xctest */;
+			productReference = 270410971F7E366B0095A7A7 /* RouterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C863DB351F727A05002CD75B /* Project object */ = {
+		270410851F7E366A0095A7A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = mike;
 				TargetAttributes = {
-					C863DB3D1F727A05002CD75B = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = W4PNLZFL2P;
+					2704108D1F7E366A0095A7A7 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
-					C863DB461F727A05002CD75B = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = W4PNLZFL2P;
+					270410961F7E366B0095A7A7 = {
+						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = C863DB381F727A05002CD75B /* Build configuration list for PBXProject "Router" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 270410881F7E366A0095A7A7 /* Build configuration list for PBXProject "Router" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = C863DB341F727A05002CD75B;
-			productRefGroup = C863DB3F1F727A05002CD75B /* Products */;
+			mainGroup = 270410841F7E366A0095A7A7;
+			productRefGroup = 2704108F1F7E366A0095A7A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C863DB3D1F727A05002CD75B /* Router */,
-				C863DB461F727A05002CD75B /* RouterTests */,
+				2704108D1F7E366A0095A7A7 /* Router */,
+				270410961F7E366B0095A7A7 /* RouterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C863DB3C1F727A05002CD75B /* Resources */ = {
+		2704108C1F7E366A0095A7A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C863DB451F727A05002CD75B /* Resources */ = {
+		270410951F7E366B0095A7A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -222,42 +199,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C863DB391F727A05002CD75B /* Sources */ = {
+		270410891F7E366A0095A7A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C863DC3B1F727C98002CD75B /* Router.m in Sources */,
-				C863DC3F1F728A47002CD75B /* RouterImp.m in Sources */,
-				C863DC431F728B0C002CD75B /* RouterComponent.m in Sources */,
+				270410A91F7E36830095A7A7 /* Router.swift in Sources */,
+				270410AB1F7E36AD0095A7A7 /* RegexpPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C863DB431F727A05002CD75B /* Sources */ = {
+		270410931F7E366B0095A7A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C863DB4D1F727A05002CD75B /* RouterTests.m in Sources */,
+				2704109D1F7E366B0095A7A7 /* RouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C863DB4A1F727A05002CD75B /* PBXTargetDependency */ = {
+		2704109A1F7E366B0095A7A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C863DB3D1F727A05002CD75B /* Router */;
-			targetProxy = C863DB491F727A05002CD75B /* PBXContainerItemProxy */;
+			target = 2704108D1F7E366A0095A7A7 /* Router */;
+			targetProxy = 270410991F7E366B0095A7A7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C863DB501F727A05002CD75B /* Debug */ = {
+		270410A01F7E366B0095A7A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -277,15 +253,16 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -299,23 +276,24 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C863DB511F727A05002CD75B /* Release */ = {
+		270410A11F7E366B0095A7A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -335,15 +313,16 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -351,113 +330,118 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		C863DB531F727A05002CD75B /* Debug */ = {
+		270410A31F7E366B0095A7A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W4PNLZFL2P;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Router/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.mike.Router;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.mike.Router;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C863DB541F727A05002CD75B /* Release */ = {
+		270410A41F7E366B0095A7A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W4PNLZFL2P;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Router/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.mike.Router;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.mike.Router;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		C863DB561F727A05002CD75B /* Debug */ = {
+		270410A61F7E366B0095A7A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = W4PNLZFL2P;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RouterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.mike.RouterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mike.RouterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C863DB571F727A05002CD75B /* Release */ = {
+		270410A71F7E366B0095A7A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = W4PNLZFL2P;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RouterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.mike.RouterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mike.RouterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C863DB381F727A05002CD75B /* Build configuration list for PBXProject "Router" */ = {
+		270410881F7E366A0095A7A7 /* Build configuration list for PBXProject "Router" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C863DB501F727A05002CD75B /* Debug */,
-				C863DB511F727A05002CD75B /* Release */,
+				270410A01F7E366B0095A7A7 /* Debug */,
+				270410A11F7E366B0095A7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C863DB521F727A05002CD75B /* Build configuration list for PBXNativeTarget "Router" */ = {
+		270410A21F7E366B0095A7A7 /* Build configuration list for PBXNativeTarget "Router" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C863DB531F727A05002CD75B /* Debug */,
-				C863DB541F727A05002CD75B /* Release */,
+				270410A31F7E366B0095A7A7 /* Debug */,
+				270410A41F7E366B0095A7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C863DB551F727A05002CD75B /* Build configuration list for PBXNativeTarget "RouterTests" */ = {
+		270410A51F7E366B0095A7A7 /* Build configuration list for PBXNativeTarget "RouterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C863DB561F727A05002CD75B /* Debug */,
-				C863DB571F727A05002CD75B /* Release */,
+				270410A61F7E366B0095A7A7 /* Debug */,
+				270410A71F7E366B0095A7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C863DB351F727A05002CD75B /* Project object */;
+	rootObject = 270410851F7E366A0095A7A7 /* Project object */;
 }
