@@ -12,9 +12,10 @@
 		2704109F1F7E366B0095A7A7 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 270410911F7E366B0095A7A7 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		270410A91F7E36830095A7A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410A81F7E36830095A7A7 /* Router.swift */; };
 		270410AB1F7E36AD0095A7A7 /* PathToReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410AA1F7E36AD0095A7A7 /* PathToReg.swift */; };
-		2713F9AB1F8A1DC600E9E8D6 /* Module.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713F9AA1F8A1DC600E9E8D6 /* Module.framework */; };
+		2713F9AB1F8A1DC600E9E8D6 /* Module.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713F9AA1F8A1DC600E9E8D6 /* Module.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		27B192751F8935F500C5E031 /* SwiftyRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B192741F8935F500C5E031 /* SwiftyRe.framework */; };
 		27B192771F89411B00C5E031 /* SwiftyRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B192741F8935F500C5E031 /* SwiftyRe.framework */; };
+		27E177D51F8B38CD00C4D4E6 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E177D41F8B38CD00C4D4E6 /* PathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		270410AA1F7E36AD0095A7A7 /* PathToReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToReg.swift; sourceTree = "<group>"; };
 		2713F9AA1F8A1DC600E9E8D6 /* Module.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Module.framework; path = Carthage/Build/iOS/Module.framework; sourceTree = "<group>"; };
 		27B192741F8935F500C5E031 /* SwiftyRe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyRe.framework; path = Carthage/Build/iOS/SwiftyRe.framework; sourceTree = "<group>"; };
+		27E177D41F8B38CD00C4D4E6 /* PathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				2704109C1F7E366B0095A7A7 /* RouterTests.swift */,
+				27E177D41F8B38CD00C4D4E6 /* PathTests.swift */,
 				2704109E1F7E366B0095A7A7 /* Info.plist */,
 			);
 			path = RouterTests;
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E177D51F8B38CD00C4D4E6 /* PathTests.swift in Sources */,
 				2704109D1F7E366B0095A7A7 /* RouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

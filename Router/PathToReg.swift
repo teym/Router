@@ -10,14 +10,8 @@ import Foundation
 import SwiftyRe
 
 extension String {
-    func slice(_ start:Int, end:Int? = nil) -> String {
-        return Re.slice(self, start: start, end: end)
-    }
-    func at(_ index:Int) -> String {
-        return Re.slice(self, start: index, end: index+1)
-    }
     var length:Int {
-        return (self as NSString).length
+        return self.characters.count
     }
 }
 extension Array {
@@ -110,18 +104,18 @@ func parse(str:String, options:[String:AnyObject]) -> [ParseToken] {
         let offset = ret.index
         let m = res[0]
         let escaped = res[1]
-        path += str.slice(index, end: offset)
+        path += str.slice(start: index, end: offset)
         index = offset + m.length
         
         // Ignore already escaped sequences.
         if !escaped.isEmpty {
-            path.append(escaped.at(1))
+            path.append(escaped[1] ?? "")
             pathEscaped = true
             continue
         }
     
         var prev = ""
-        let next = str.at(index)
+        let next = str[index] ?? ""
         let name = res[2]
         let capture = res[3]
         let group = res[4]
@@ -129,9 +123,9 @@ func parse(str:String, options:[String:AnyObject]) -> [ParseToken] {
     
         if (!pathEscaped && path.length > 0) {
             let k = path.length - 1
-            if delimiters.contains(path.at(k)) {
-                prev = path.at(k)
-                path = path.slice(0, end: k)
+            if delimiters.contains(path[k] ?? "") {
+                prev = path[k] ?? ""
+                path = path.slice(start: 0, end: k)
           }
         }
     
@@ -172,7 +166,7 @@ func parse(str:String, options:[String:AnyObject]) -> [ParseToken] {
     
       // Push any remaining characters.
       if (!path.isEmpty || index < str.length) {
-        let p = path + str.slice(index)
+        let p = path + str.slice(start: index)
         tokens.append(.Path(p))
       }
 
