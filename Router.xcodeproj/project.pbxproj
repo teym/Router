@@ -11,7 +11,10 @@
 		2704109D1F7E366B0095A7A7 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2704109C1F7E366B0095A7A7 /* RouterTests.swift */; };
 		2704109F1F7E366B0095A7A7 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 270410911F7E366B0095A7A7 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		270410A91F7E36830095A7A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410A81F7E36830095A7A7 /* Router.swift */; };
-		270410AB1F7E36AD0095A7A7 /* RegexpPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */; };
+		270410AB1F7E36AD0095A7A7 /* PathToReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270410AA1F7E36AD0095A7A7 /* PathToReg.swift */; };
+		2713F9AB1F8A1DC600E9E8D6 /* Module.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713F9AA1F8A1DC600E9E8D6 /* Module.framework */; };
+		27B192751F8935F500C5E031 /* SwiftyRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B192741F8935F500C5E031 /* SwiftyRe.framework */; };
+		27B192771F89411B00C5E031 /* SwiftyRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B192741F8935F500C5E031 /* SwiftyRe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +35,9 @@
 		2704109C1F7E366B0095A7A7 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		2704109E1F7E366B0095A7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		270410A81F7E36830095A7A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexpPath.swift; sourceTree = "<group>"; };
+		270410AA1F7E36AD0095A7A7 /* PathToReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToReg.swift; sourceTree = "<group>"; };
+		2713F9AA1F8A1DC600E9E8D6 /* Module.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Module.framework; path = Carthage/Build/iOS/Module.framework; sourceTree = "<group>"; };
+		27B192741F8935F500C5E031 /* SwiftyRe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyRe.framework; path = Carthage/Build/iOS/SwiftyRe.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B192751F8935F500C5E031 /* SwiftyRe.framework in Frameworks */,
+				2713F9AB1F8A1DC600E9E8D6 /* Module.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270410981F7E366B0095A7A7 /* Router.framework in Frameworks */,
+				27B192771F89411B00C5E031 /* SwiftyRe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,7 @@
 				270410901F7E366A0095A7A7 /* Router */,
 				2704109B1F7E366B0095A7A7 /* RouterTests */,
 				2704108F1F7E366A0095A7A7 /* Products */,
+				27B192731F8935F500C5E031 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,7 +87,7 @@
 				270410911F7E366B0095A7A7 /* Router.h */,
 				270410921F7E366B0095A7A7 /* Info.plist */,
 				270410A81F7E36830095A7A7 /* Router.swift */,
-				270410AA1F7E36AD0095A7A7 /* RegexpPath.swift */,
+				270410AA1F7E36AD0095A7A7 /* PathToReg.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -90,6 +99,15 @@
 				2704109E1F7E366B0095A7A7 /* Info.plist */,
 			);
 			path = RouterTests;
+			sourceTree = "<group>";
+		};
+		27B192731F8935F500C5E031 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2713F9AA1F8A1DC600E9E8D6 /* Module.framework */,
+				27B192741F8935F500C5E031 /* SwiftyRe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +149,7 @@
 				270410931F7E366B0095A7A7 /* Sources */,
 				270410941F7E366B0095A7A7 /* Frameworks */,
 				270410951F7E366B0095A7A7 /* Resources */,
+				27B192781F89429700C5E031 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -198,13 +217,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27B192781F89429700C5E031 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyRe.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyRe.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		270410891F7E366A0095A7A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				270410A91F7E36830095A7A7 /* Router.swift in Sources */,
-				270410AB1F7E36AD0095A7A7 /* RegexpPath.swift in Sources */,
+				270410AB1F7E36AD0095A7A7 /* PathToReg.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +387,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Router/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,6 +413,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Router/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -388,6 +433,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RouterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.mike.RouterTests;
@@ -402,6 +451,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RouterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.mike.RouterTests;
