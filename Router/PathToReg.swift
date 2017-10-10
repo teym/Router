@@ -67,8 +67,7 @@ enum ParseToken{
     case Token(TokenInfo)
 }
 
-func pathRegexp() ->Re {
-    return Re([
+let PATH_REGEXP = Re([
     // Match escaped characters that would otherwise appear in future matches.
     // This allows the user to escape special characters that won't transform.
     "(\\\\.)",
@@ -79,8 +78,6 @@ func pathRegexp() ->Re {
     // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined]
     "(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?"
     ].joined(separator: "|"),"g")
-    
-}
 
 /**
  * Parse a string for the raw tokens.
@@ -98,7 +95,6 @@ func parse(str:String, options:[String:AnyObject]) -> [ParseToken] {
     let delimiters = (options["delimiters"] as? String) ?? "./"
     var pathEscaped = false
     
-    let PATH_REGEXP = pathRegexp()
     while let ret = PATH_REGEXP.exec(str) {
         let res = ret.values
         let offset = ret.index
