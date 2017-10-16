@@ -176,9 +176,17 @@ class PathRouter:NSObject,Router {
     }
     
     func comptent(url:String)->UIViewController? {
-        let path = NSURL(string: url)?.path ?? url
+        let uri = URLComponents(string: url)
+        let path = uri?.path ?? url
         for comptent in self.comptents {
-            if let parameters = comptent.parser(path) {
+            if var parameters = comptent.parser(path) {
+                if let comp = uri{
+                    let kvs = (comp.queryItems ?? []).map({ (item) -> (String,String) in
+                        return (item.name,item.value ?? "")
+                    })
+                    parameters.merge(kvs, uniquingKeysWith: { (first, _) -> String in first })
+                }
+                
                 return comptent.comptenter(url, parameters)
             }
         }
