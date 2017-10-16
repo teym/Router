@@ -36,6 +36,7 @@ class MRouter:NSObject, Router, Module {
     }
 
     func push(path:String){
+        print("[router] push:",path)
         if let controller = self.router.comptent(url: path){
             if let nav = self.root {
                 if let index = nav.viewControllers.index(of: controller) {
@@ -46,10 +47,12 @@ class MRouter:NSObject, Router, Module {
                 }else {
                     nav.pushViewController(controller, animated: true)
                 }
+                print("[router] pushed:",path," controller:",controller)
             }
         }
     }
     func replace(path:String){
+        print("[router] replace:",path)
         if let controller = self.router.comptent(url: path){
             if let nav = self.root{
                 var list = nav.viewControllers
@@ -59,10 +62,12 @@ class MRouter:NSObject, Router, Module {
                 }
                 list.append(controller)
                 nav.setViewControllers(list, animated: false)
+                print("[router] replaced:",path," controller:",controller)
             }
         }
     }
     func pop(){
+        print("[router] pop")
         self.root?.popViewController(animated: true)
     }
     func addRouter(path:String,comptent:@escaping (String,[String:String])->UIViewController?){
@@ -118,6 +123,7 @@ class PathRouter:NSObject,Router {
         }
     }
     func addRouter(path:String,comptent:@escaping (String,[String:String])->UIViewController?){
+        print("[router] addRouter:",path)
         let (re, keys) = stringToRegexp(path: path)
         let names = ["matched"].appendWith(contentsOf: keys.map({ (t) -> String in
             switch t.name {
@@ -140,6 +146,7 @@ class PathRouter:NSObject,Router {
         addComptent(comptent: Comptent(parser: parser,comptenter: comptenter))
     }
     func addDefaultRouter(comptent:@escaping (String,[String:String])->UIViewController?){
+        print("[router] addDefaultRouter")
         let parser = { (url:String) -> [String:String]? in
             return ["matched":url]
         }
@@ -149,6 +156,7 @@ class PathRouter:NSObject,Router {
         addComptent(comptent: Comptent(parser: parser, comptenter: comptenter, isDefault:true))
     }
     func addSubRouter(path:String, comptent:@escaping (String,[String:String])->Void) -> Router {
+        print("[router] addSubRouter:",path)
         let router = PathRouter(parent: self)
         let (re, keys) = stringToRegexp(path: path,options: ["end":false as AnyObject])
         let names = ["matched"].appendWith(contentsOf: keys.map({ (t) -> String in
@@ -186,7 +194,7 @@ class PathRouter:NSObject,Router {
                     })
                     parameters.merge(kvs, uniquingKeysWith: { (first, _) -> String in first })
                 }
-                
+                print("[router] route:",url,"parameters:",parameters)
                 return comptent.comptenter(url, parameters)
             }
         }
