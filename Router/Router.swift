@@ -31,14 +31,13 @@ class MRouter:NSObject, Router, Module {
     var root: UINavigationController? = nil
     required init(inject: ModuleInject) {
         super.init()
-        self.root = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
         self.router = PathRouter(parent: self)
     }
 
     func push(path:String){
         print("[router] push:",path)
         if let controller = self.router.comptent(url: path){
-            if let nav = self.root {
+            if let nav = self.rootNav() {
                 if let index = nav.viewControllers.index(of: controller) {
                     var views = nav.viewControllers
                     views.remove(at: index)
@@ -54,7 +53,7 @@ class MRouter:NSObject, Router, Module {
     func replace(path:String){
         print("[router] replace:",path)
         if let controller = self.router.comptent(url: path){
-            if let nav = self.root{
+            if let nav = self.rootNav(){
                 var list = nav.viewControllers
                 _ = list.popLast()
                 if let index = list.index(of: controller) {
@@ -68,7 +67,7 @@ class MRouter:NSObject, Router, Module {
     }
     func pop(){
         print("[router] pop")
-        self.root?.popViewController(animated: true)
+        self.rootNav()?.popViewController(animated: true)
     }
     func addRouter(path:String,comptent:@escaping (String,[String:String])->UIViewController?){
         self.router.addRouter(path: path, comptent: comptent)
@@ -78,6 +77,13 @@ class MRouter:NSObject, Router, Module {
     }
     func addSubRouter(path:String, comptent:@escaping (String,[String:String])->Void) -> Router {
         return self.router.addSubRouter(path: path, comptent: comptent)
+    }
+    func rootNav() -> UINavigationController? {
+        guard self.root == nil else {
+            return self.root
+        }
+        self.root = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
+        return self.root
     }
 }
 
