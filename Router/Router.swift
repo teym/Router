@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Module
 
-public protocol Router: NSObjectProtocol {
+@objc public protocol Router: AnyObject {
     func push(path:String)
     func replace(path:String)
     func pop()
@@ -46,7 +46,7 @@ class MRouter:NSObject, Router, Module {
                 }else {
                     nav.pushViewController(controller, animated: true)
                 }
-                print("[router] pushed:",path," controller:",controller)
+//                print("[router] pushed:",path," controller:",controller)
             }
         }
     }
@@ -61,7 +61,7 @@ class MRouter:NSObject, Router, Module {
                 }
                 list.append(controller)
                 nav.setViewControllers(list, animated: false)
-                print("[router] replaced:",path," controller:",controller)
+//                print("[router] replaced:",path," controller:",controller)
             }
         }
     }
