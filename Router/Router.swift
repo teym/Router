@@ -6,19 +6,8 @@
 //  Copyright © 2017年 mike. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import Module
-
-@objc public protocol Router: AnyObject {
-    func push(path:String)
-    func replace(path:String)
-    func pop()
-    
-    func addRouter(path:String,comptent:@escaping (String,[String:String])->UIViewController?)
-    func addDefaultRouter(comptent:@escaping (String,[String:String])->UIViewController?)
-    func addSubRouter(path:String, comptent:@escaping (String,[String:String])->Void) -> Router
-}
+import Interfaces
 
 class MRouter:NSObject, Router, Module {
     static func interfaces() -> [AnyObject] {

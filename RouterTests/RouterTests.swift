@@ -7,15 +7,9 @@
 //
 
 import XCTest
-import Module
+import Interfaces
 @testable import Router
 
-//class Inject:ModuleInject {
-//    struct ModuleError:Error {}
-//    public func instance<T>() throws -> T {
-//        throw ModuleError()
-//    }
-//}
 class MockRouter:NSObject, Router {
     var controllers:[UIViewController] = []
     var router:PathRouter!
