@@ -1,2 +1,2 @@
-github "teym/Interfaces"
+github "teym/Interfaces" "master"
 github "teym/SwiftyRe"
