@@ -11,9 +11,6 @@ import Interfaces
 @testable import Router
 
 class MockRouter:NSObject, Router {
-    func addMiddleware(middleware: (String, [String : String], UIViewController?, () -> Void) -> Void) {
-        
-    }
     
     var controllers:[UIViewController] = []
     var router:PathRouter!
@@ -36,15 +33,19 @@ class MockRouter:NSObject, Router {
     }
     func push(path:String){
         let (path, param) = urlParse(url: path)
-        if let controller = self.router.comptent(url: path,parameters: param){
-            controllers.append(controller)
+        self.router.route(url: path, parameters: param) { (a, b) in
+            if let c = b {
+                controllers.append(c)
+            }
         }
     }
     func replace(path:String){
         let (path, param) = urlParse(url: path)
-        if let controller = self.router.comptent(url: path,parameters: param){
-            _ = controllers.popLast()
-            controllers.append(controller)
+        self.router.route(url: path, parameters: param) { (a, b) in
+            if let c = b {
+                _ = controllers.popLast()
+                controllers.append(c)
+            }
         }
     }
     func pop(){
@@ -58,6 +59,9 @@ class MockRouter:NSObject, Router {
     }
     func addSubRouter(path:String, comptent:@escaping (String,[String:String])->Void) -> Router {
         return self.router.addSubRouter(path: path, comptent: comptent)
+    }
+    func addMiddleware(middleware: @escaping Router.Middleware) {
+        
     }
 }
 var ViewControllerParamersKey = "ViewControllerParamersKey"
