@@ -10,6 +10,7 @@ import UIKit
 import Interfaces
 
 class MRouter:NSObject, Router, Module {
+    typealias RootMiddleware = (String, [String : String], UIViewController?, () -> Void) -> Void
     static func interfaces() -> [AnyObject] {
         return [Router.self as AnyObject]
     }
@@ -18,14 +19,43 @@ class MRouter:NSObject, Router, Module {
     }
     var router:PathRouter! = nil
     var root: UINavigationController? = nil
+    var middlewares:[RootMiddleware] = []
     required init(inject: ModuleInject) {
         super.init()
         self.router = PathRouter(parent: self)
+        self.addMiddleware { [weak self] (a,b,c,d) in self?.rootMiddleware(type: a, parameters: b, controller: c, next: d)}
     }
-
+    func rootMiddleware(type:String, parameters:[String : String], controller:UIViewController?, next:() -> Void){
+        guard let controller = controller else { return }
+        guard let nav = self.rootNav() else { return }
+        var list = type == "push" ? nav.viewControllers : Array(nav.viewControllers.dropLast())
+        if let index = list.index(of: controller) {
+            list.remove(at: index)
+            nav.setViewControllers(list.appendWith(contentsOf: [controller]), animated: true)
+        }else{
+            if type == "push" {
+                nav.pushViewController(controller, animated: true)
+            }else {
+                nav.setViewControllers(list.appendWith(contentsOf: [controller]), animated: true)
+            }
+        }
+    }
+    func urlParse(url:String)->(String,[String:String]){
+        let uri = URLComponents(string: url)
+        let path = uri?.path ?? url
+        var param = ["URL":url]
+        if let comp = uri{
+            let kvs = (comp.queryItems ?? []).map({ (item) -> (String,String) in
+                return (item.name,item.value ?? "")
+            })
+            param.merge(kvs, uniquingKeysWith: { (first, _) -> String in first })
+        }
+        return (path, param)
+    }
     func push(path:String){
         print("[router] push:",path)
-        if let controller = self.router.comptent(url: path){
+        let (path,parameters) = urlParse(url: path)
+        if let controller = self.router.comptent(url: path, parameters: parameters){
             if let nav = self.rootNav() {
                 if let index = nav.viewControllers.index(of: controller) {
                     var views = nav.viewControllers
@@ -41,7 +71,8 @@ class MRouter:NSObject, Router, Module {
     }
     func replace(path:String){
         print("[router] replace:",path)
-        if let controller = self.router.comptent(url: path){
+        let (path,parameters) = urlParse(url: path)
+        if let controller = self.router.comptent(url: path, parameters: parameters){
             if let nav = self.rootNav(){
                 var list = nav.viewControllers
                 _ = list.popLast()
@@ -73,6 +104,10 @@ class MRouter:NSObject, Router, Module {
         }
         self.root = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
         return self.root
+    }
+    
+    func addMiddleware(middleware: @escaping RootMiddleware) {
+        middlewares.append(middleware)
     }
 }
 
@@ -172,27 +207,25 @@ class PathRouter:NSObject,Router {
         let comptenter = { (url:String,parameters:[String:String]) -> UIViewController? in
             comptent(url,parameters)
             let match = parameters["matched"] ?? ""
-            return router.comptent(url: String(url.dropFirst(match.characters.count)))
+            return router.comptent(url: String(url.dropFirst(match.characters.count)), parameters: parameters)
         }
         addComptent(comptent: Comptent(parser: parser,comptenter: comptenter))
         return router
     }
     
-    func comptent(url:String)->UIViewController? {
-        let uri = URLComponents(string: url)
-        let path = uri?.path ?? url
+    func comptent(url:String,parameters:[String:String] = [:])->UIViewController? {
         for comptent in self.comptents {
-            if var parameters = comptent.parser(path) {
-                if let comp = uri{
-                    let kvs = (comp.queryItems ?? []).map({ (item) -> (String,String) in
-                        return (item.name,item.value ?? "")
-                    })
-                    parameters.merge(kvs, uniquingKeysWith: { (first, _) -> String in first })
-                }
-                print("[router] route:",url,"parameters:",parameters)
-                return comptent.comptenter(url, parameters)
+            if var param = comptent.parser(url) {
+                param.merge(parameters, uniquingKeysWith: { (first, _) -> String in first })
+                param["fullMatched"] = (parameters["fullMatched"] ?? "") + (param["matched"] ?? "")
+                print("[router] route:",url,"parameters:",param)
+                return comptent.comptenter(url, param)
             }
         }
         return nil
+    }
+    
+    func addMiddleware(middleware: (String, [String : String], UIViewController?, () -> Void) -> Void) {
+        self.parent?.addMiddleware(middleware: middleware)
     }
 }
