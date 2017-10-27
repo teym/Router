@@ -47,7 +47,7 @@ class MRouter:NSObject, Router, Module {
         return self.root
     }
     private func callMiddleware(type:RouteType,parameters:[String:String],controller:UIViewController?,middlewares:[Middleware],index:Int = -1){
-        let index = index < 0 ? middlewares.count : index
+        let index = index < 0 ? middlewares.count -1 : index
         let middleware = middlewares[index]
         middleware(type, parameters, controller) {
             if index != 0{
