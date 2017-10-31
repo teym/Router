@@ -77,6 +77,7 @@ class MRouter:NSObject, Router, Module {
         var path = url
         if var comp = URLComponents(string: url){
             comp.queryItems = queryItems.appendWith(contentsOf: (comp.queryItems ?? []))
+            comp.queryItems = (comp.queryItems?.count ?? 0) == 0 ? nil : comp.queryItems
             param["URL"] = comp.string ?? url
             path = comp.path
             let kvs = (comp.queryItems ?? []).map({ (item) -> (String,Any) in
